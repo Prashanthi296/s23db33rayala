@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  -
+   let results =[
+      {
+        "cinema_Name": "spiderman",
+        "cinema_genre": "action",
+        "cinema_parts": 3
+      },
+      {
+        "cinema_Name": "IronMan",
+        "cinema_genre": "action",
+        "cinema_parts": 3
+      },
+      {
+        "cinema_Name": "balagam",
+        "cinema_genre": "family",
+        "cinema_parts": 1
+      },
+      {
+        "cinema_Name": "orange",
+        "cinema_genre": "romantic",
+        "cinema_parts": 1
+      },
+      {
+        "cinema_Name": "Game of Thrones",
+        "cinema_genre": "all",
+        "cinema_parts": 50
+      }
+    ]
+  h1= title
+  .container-fluid 
+    .row 
+    
+      each insect in results
+        div(class="col-sm-2" style=`border:solid 2px black` onclick=`buy(${results.indexOf(insect)})`) 
+          each value,key in insect 
+            = key + " : " + value
+            br
+  script.
+    function buy(index){
+      alert("You purchased item "+index)
+    }
