@@ -1,6 +1,6 @@
-# S23wb33rayala
+# S23db33rayala
 Rayala Prashanthi
-[Hosted link](https://s23wb33rayala.onrender.com)
+[Hosted link](https://s23db33rayala.onrender.com)
 <br>
 Class Seleted <b>Cinemas</b>
 | Attribute | type | 
