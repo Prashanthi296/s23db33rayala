@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+const cinema_controlers= require('../controllers/cinema');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('cinema', { title: 'Search Results Cinema' });
-});
+router.get('/', cinema_controlers.cinema_view_all_Page);
 
 module.exports = router;
