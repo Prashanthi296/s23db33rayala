@@ -1,0 +1,28 @@
+extends layout
+block content
+    if (toShow == null)
+        h2 No instance to detail
+    else
+        - let cinemaid = toShow._id
+        - let cinema_Name = toShow.cinema_Name
+        - let cinema_genre = toShow.cinema_genre
+        - let cinema_parts = toShow.cinema_parts
+        - let actionid = "/resource/cinemas/" + cinemaid
+            h1= title
+                - let cinemaid = toShow._id
+                - let cinema_Name = toShow.cinema_Name
+                - let cinema_genre = toShow.cinema_genre
+                - let cinema_parts = toShow.cinema_parts
+                div
+                    div.row
+                        div(class='cinemaAttr mr-3') Cinema ID is:
+                        div #{cinemaid}
+                    div.row
+                        div(class='cinemaAttr mr-3') Cinema Name is:
+                        div #{cinema_Name}
+                    div.row
+                        div(class='cinemaAttr mr-3') Cinema Genre is:
+                        div #{cinema_genre}
+                    div.row
+                        div(class='cinemaAttr mr-3') Cinema Parts is:
+                        div #{cinema_parts}

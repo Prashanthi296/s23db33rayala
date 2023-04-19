@@ -6,7 +6,7 @@ block content
   .container-fluid 
     .row 
       each cin in items
-        div(class="col-sm-2" style=`border:solid 2px black` onclick=`buy(${items.indexOf(cin)})`) 
+        div(class="col-sm-2" style=`border:solid 2px white; margin:20px` onclick=`buy(${items.indexOf(cin)})`) 
           p.
            Cinema_Name -  #{cin.cinema_Name}
           p.
@@ -17,3 +17,41 @@ block content
     function buy(index){
       alert("You purchased item "+index)
     }
+  style.
+  
+    .row{
+      padding:0px;
+    }
+    a{
+      height:30px;
+      font-size:12px !important;
+      margin:4px;
+    }
+   
+  
+    body{
+      padding:20px;
+      background: linear-gradient(rgba(0, 0, 0,0.8),rgba(0, 0, 0,0.8)), url('https://images.pexels.com/photos/65128/pexels-photo-65128.jpeg');
+      background-size:cover;
+      height:100vh;
+      background-repeat:no-repeat;
+    }
+    p{
+      text-align:center;
+      width:100%;
+    }
+    .row{
+      display:flex;
+      justify-content:center
+    }
+    h3{
+      text-align:center;
+      width :100%;
+    }
+    h1,p{
+      text-align:center;
+
+      color:white;
+      text-shadow:1px 1px 12px black;
+    }
+ 

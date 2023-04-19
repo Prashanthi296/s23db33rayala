@@ -1,0 +1,48 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+    h2 No instance to delete
+ else
+    - let cinemaid = toShow._id
+    - let cinema_Name = toShow.cinema_Name
+    - let cinema_g = toShow.cinema_genre
+    - let cinema_p = toShow.cinema_parts
+    - let actionid = "/resource/cinemas/" + cinemaid
+    script let actionid = "#{actionid}"
+    div
+        div.row
+            div(class='cinemaAttr mr-3') Cinema ID is:
+            div #{cinemaid}
+        div.row
+            div(class='cinemaAttr mr-3') Cinema Name is:
+            div #{cinema_Name}
+        div.row
+            div(class='cinemaAttr mr-3') Cinema Genre is:
+            div #{cinema_g}
+        div.row
+            div(class='cinemaAttr mr-3') Cinema Parts is:
+            div #{cinema_g}
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+        function cancel() {
+            window.location.href='/cinema'
+        }
+    script.
+        function deleteOnid() {
+            console.log("starting delete")
+            // delete first
+            fetch(actionid, {
+            method: 'DELETE'
+            }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+            alert("Delete succeded")
+            window.location.href='/cinema'
+            // TODO handle body
+            }).catch((error) => {
+            // TODO handle error
+            alert("Delete failed " + error )
+            });
+        }
