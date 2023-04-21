@@ -1,57 +1,16 @@
 extends layout
 
 block content
-  - let items = results
+  - let cinemas = results
   h1= title
-  .container-fluid 
-    .row 
-      each cin in items
-        div(class="col-sm-2" style=`border:solid 2px white; margin:20px` onclick=`buy(${items.indexOf(cin)})`) 
-          p.
-           Cinema_Name -  #{cin.cinema_Name}
-          p.
-           Cinema_Genre -  #{cin.cinema_genre}
-          p.
-           Cinema_parts -  #{cin.cinema_parts}
-  script.
-    function buy(index){
-      alert("You purchased item "+index)
-    }
-  style.
-  
-    .row{
-      padding:0px;
-    }
-    a{
-      height:30px;
-      font-size:12px !important;
-      margin:4px;
-    }
-   
-  
-    body{
-      padding:20px;
-      background: linear-gradient(rgba(0, 0, 0,0.8),rgba(0, 0, 0,0.8)), url('https://images.pexels.com/photos/65128/pexels-photo-65128.jpeg');
-      background-size:cover;
-      height:100vh;
-      background-repeat:no-repeat;
-    }
-    p{
-      text-align:center;
-      width:100%;
-    }
-    .row{
-      display:flex;
-      justify-content:center
-    }
-    h3{
-      text-align:center;
-      width :100%;
-    }
-    h1,p{
-      text-align:center;
+  div(class="container-fluid")
+  div(class="row m-1")
+    each cinema in cinemas
+      - let destination = `dispatch(\"/cinema/update?id=${cinema._id}\")`
+      div(class="row-sm-2", class="m-1") cinema #{cinema.cinema_Name}(#{cinema.cinema_genre}) is #{cinema.cinema_parts} 
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
 
-      color:white;
-      text-shadow:1px 1px 12px black;
+  script.
+    function dispatch(path){
+      window.location.href=path
     }
- 
