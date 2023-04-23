@@ -1,16 +1,99 @@
+//- extends layout
+
+//- block content
+//-   - let cinemas = results
+//-   h1= title
+//-   div(class="container-fluid")
+//-   div(class="row m-1")
+//-     each cinema in cinemas
+//-       - let destination = `dispatch(\"/cinema/update?id=${cinema._id}\")`
+//-       div(class="row-sm-2", class="m-1") cinema #{cinema.cinema_Name} with genre (#{cinema.cinema_genre}) has #{cinema.cinema_parts} 
+//-         button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+//-   script.
+//-     function dispatch(path){
+//-       window.location.href=path
+//-     }
 extends layout
 
 block content
-  - let cinemas = results
-  h1= title
-  div(class="container-fluid")
-  div(class="row m-1")
-    each cinema in cinemas
-      - let destination = `dispatch(\"/cinema/update?id=${cinema._id}\")`
-      div(class="row-sm-2", class="m-1") cinema #{cinema.cinema_Name}(#{cinema.cinema_genre}) is #{cinema.cinema_parts} 
-        button.btn( class="btn-primary ml-1", onclick= destination) Update
-
   script.
-    function dispatch(path){
-      window.location.href=path
+    function load(){
+      console.log("cared")
     }
+  style.
+    a{
+      height:30px;
+      font-size:12px !important;
+      margin:4px;
+    }
+    .item{
+      position:fixed;
+      bottom:0;
+      z-index:-100
+    }
+    .img1{
+      right:30;
+    }
+    .img2{
+      right:30px;
+
+    }
+    body{
+       background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(https://c4.wallpaperflare.com/wallpaper/207/944/64/popcorn-movie-snack-movietime-wallpaper-preview.jpg );
+      //-  background:black;
+       background-size:cover;
+
+      
+      height:100vh;
+      background-repeat:no-repeat;
+    }
+    p{
+      text-align:center;
+      width:100%;
+    }
+    .row{
+      display:flex;
+      justify-content:center
+    }
+    h3{
+      text-align:center;
+      width :100%;
+    }
+    h1{
+      color:white;
+      text-shadow:1px 1px 12px black;
+    }
+    #buttons{
+      border-radius:12px;
+      width:100%;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-evenly
+    }
+    .center{
+      text-align:center;
+      position:relative;
+      top:50%;
+      transform:translateY(-50%);
+    }
+
+  .center
+    h1= title
+    a(class='btn btn-primary' href=`/cinema/create`) Create new Insect Instance
+    .container-fluid(onload='load()')
+      .row 
+        each cinema,key in results
+          div(class="col-sm-2" style=`margin:5px;border-radius:12px;text-align:center;background:white;border:solid 2px black;display:flex;flex-direction:row;flex-wrap:wrap` onclick=`buy(${key})`) 
+              h3= cinema.cinema_Name
+              div#buttons
+                a(class='btn btn-primary' href=`/cinema/detail/?id=${cinema._id}`) Details
+                a(class='btn btn-primary' href=`/cinema/update/?id=${cinema._id}`) Update
+                a(class='btn btn-primary' href=`/cinema/delete/?id=${cinema._id}`) Delete
+  script.
+    function load(){
+      console.log("cared")
+    }
+    //- function buy(index){
+    //-   alert("You purchased item "+index)
+    //- }

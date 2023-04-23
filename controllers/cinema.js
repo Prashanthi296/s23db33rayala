@@ -44,6 +44,7 @@ exports.cinema_update_put = async function (req, res) {
     ${JSON.stringify(req.body)}`)
     try {
         let toUpdate = await Cinema.findById(req.params.id)
+        console.log(toUpdate);
         // Do updates of properties
         if (req.body.cinema_Name)
             toUpdate.cinema_Name = req.body.cinema_Name;
@@ -52,10 +53,14 @@ exports.cinema_update_put = async function (req, res) {
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
+        
     } catch (err) {
+        // console.log(err);
+        var temp = Object.keys(err.errors)[0]
+        console.log(JSON.stringify(err.errors[temp].message));
         res.status(500)
-        res.send(`{"error": ${err}: Update for id ${req.params.id}
-    failed`);
+        res.send(`{'error': '${err}'}`);
+    // res.send(`{"error": "${err.errors[temp].message} failed"}`);
     }
 };
 exports.cinema_view_all_Page = async function (req, res) {
